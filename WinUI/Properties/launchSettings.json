@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FilesManage(PoweredByAI) (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "FilesManage(PoweredByAI) (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
