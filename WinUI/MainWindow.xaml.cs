@@ -25,7 +25,11 @@ namespace FilesManage_PoweredByAI_
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            // Hide the default system title bar.
+            ExtendsContentIntoTitleBar = true;
+            // Replace system title bar with the WinUI TitleBar.
+            SetTitleBar(FilesManageTitleBar);
         }
     }
 }
