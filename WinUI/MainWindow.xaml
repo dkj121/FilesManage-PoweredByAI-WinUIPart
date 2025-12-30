@@ -24,14 +24,11 @@
             Title="FilesManage(PoweredByAI)"
             Subtitle=""
             IsBackButtonVisible="True"
-            IsPaneToggleButtonVisible="True">
+            IsBackButtonEnabled="{x:Bind rootFrame.CanGoBack, Mode=OneWay}"
+            BackRequested="AppTitleBar_BackRequested">
             <TitleBar.IconSource>
                 <ImageIconSource ImageSource="/Assets/Tiles/GalleryIcon.ico" />
             </TitleBar.IconSource>
         </TitleBar>
-
-        <!-- App content -->
-        <Frame x:Name="rootFrame" Grid.Row="1"
-               SourcePageType="views:FileManager"/>
     </Grid>
 </Window>

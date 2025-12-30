@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Windows.Storage;
+
+namespace FilesManage_PoweredByAI_.Models
+{
+    internal class MyFilesTree
+    {
+        public MyFilesTree()
+        {
+
+        }
+        public async Task<MyFilesTreeNode> BuildTreeAsync(StorageFolder rootFolder)
+        {
+            MyFilesTreeNode rootNode = new MyFilesTreeNode
+            {
+                _name = rootFolder.Name,
+                _path = rootFolder.Path,
+                _folder = rootFolder,
+                _isFolder = true
+            };
+            await BuildTreeRecursiveAsync(rootNode, rootFolder);
+            return rootNode;
+        }
+        public async Task BuildTreeRecursiveAsync(MyFilesTreeNode currentNode, StorageFolder currentFolder)
+        {
+            var items = await currentFolder.GetItemsAsync();
+            foreach (var item in items)
+            {
+                if (item is StorageFolder folder)
+                {
+                    MyFilesTreeNode folderNode = new MyFilesTreeNode
+                    {
+                        _name = folder.Name,
+                        _path = folder.Path,
+                        _folder = folder,
+                        _isFolder = true
+                    };
+                    folderNode.addParent(currentNode);
+                    currentNode.addChild(folderNode);
+                    await BuildTreeRecursiveAsync(folderNode, folder);
+                }
+                else if (item is StorageFile file)
+                {
+                    MyFilesTreeNode fileNode = new MyFilesTreeNode
+                    {
+                        _name = file.Name,
+                        _path = file.Path,
+                        _file = file,
+                        _isFolder = false
+                    };
+                    fileNode.addParent(currentNode);
+                    currentNode.addChild(fileNode);
+                }
+            }
+        }
+    }
+}

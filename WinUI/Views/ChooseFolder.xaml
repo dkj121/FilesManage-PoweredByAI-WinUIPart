@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="FilesManage_PoweredByAI_.Views.FileManager"
+    x:Class="FilesManage_PoweredByAI_.Views.ChooseFolder"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FilesManage_PoweredByAI_.Views"
@@ -9,9 +9,9 @@
     mc:Ignorable="d">
 
     <Grid>
-        <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button x:Name="PickFilesButton" Content="Pick files" Click="PickFilesButton_Click"/>
-            <TextBlock x:Name="PickedFilesTextBlock" Text="No files picked" Margin="12,0,0,0"/>
+        <StackPanel Spacing="8">
+            <Button x:Name="PickMultipleFilesButton" Content="Pick multiple files" Click="PickMultipleFilesButton_Click"/>
+            <TextBlock x:Name="PickedMultipleFilesTextBlock" Text="No files picked"/>
         </StackPanel>
     </Grid>
 </Page>

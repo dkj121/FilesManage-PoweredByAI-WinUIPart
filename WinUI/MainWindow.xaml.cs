@@ -31,5 +31,9 @@ namespace FilesManage_PoweredByAI_
             // Replace system title bar with the WinUI TitleBar.
             SetTitleBar(FilesManageTitleBar);
         }
+        private void AppTitleBar_BackRequested(TitleBar sender, object args)
+        {
+            
+        }
     }
 }

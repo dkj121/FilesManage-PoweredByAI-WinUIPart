@@ -1,4 +1,3 @@
-using FilesManage_PoweredByAI_.Model;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -23,14 +22,13 @@ namespace FilesManage_PoweredByAI_.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class FileManager : Page
+    public sealed partial class ChooseFolder : Page
     {
-        MyFolder myFolder = new MyFolder();
-        public FileManager()
+        public ChooseFolder()
         {
             InitializeComponent();
         }
-        private async void PickFilesButton_Click(object sender, RoutedEventArgs e)
+        private async void PickMultipleFilesButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
             {
@@ -39,19 +37,26 @@ namespace FilesManage_PoweredByAI_.Views
 
                 var picker = new FileOpenPicker(button.XamlRoot.ContentIslandEnvironment.AppWindowId);
 
-                await myFolder.openFolderAsync(picker);
+                picker.CommitButtonText = "Pick Files";
 
-                if (myFolder._myFolder.Count > 0)
+                picker.SuggestedStartLocation = PickerLocationId.Desktop;
+
+                picker.ViewMode = PickerViewMode.List;
+
+                // Show the picker dialog window
+                var files = await picker.PickMultipleFilesAsync();
+
+                if (files.Count > 0)
                 {
-                    PickedFilesTextBlock.Text = "";
-                    foreach (MyFile file in myFolder._myFolder)
+                    PickedMultipleFilesTextBlock.Text = "";
+                    foreach (var file in files)
                     {
-                        PickedFilesTextBlock.Text += file._path + "\n";
+                        PickedMultipleFilesTextBlock.Text += "- Picked: " + file.Path + Environment.NewLine;
                     }
                 }
                 else
                 {
-                    PickedFilesTextBlock.Text = "No files selected.";
+                    PickedMultipleFilesTextBlock.Text = "No files selected.";
                 }
 
                 //re-enable the button
