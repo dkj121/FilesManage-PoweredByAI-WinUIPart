@@ -17,7 +17,7 @@ namespace FilesManage_PoweredByAI_.Models
         }
         public async Task<MyFilesTreeNode> BuildTreeAsync(string path)
         {
-            StorageFolder _rootFolder = StorageFolder.GetFolderFromPathAsync(path).AsTask().Result;
+            StorageFolder _rootFolder = await StorageFolder.GetFolderFromPathAsync(path).AsTask();
             MyFilesTreeNode rootNode = new MyFilesTreeNode()
             {
                 _name = _rootFolder.Name,

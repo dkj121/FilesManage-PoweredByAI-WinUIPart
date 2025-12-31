@@ -33,7 +33,10 @@ namespace FilesManage_PoweredByAI_
         }
         private void AppTitleBar_BackRequested(TitleBar sender, object args)
         {
-            
+            if (rootFrame.CanGoBack == true)
+            {
+                rootFrame.GoBack();
+            }
         }
     }
 }

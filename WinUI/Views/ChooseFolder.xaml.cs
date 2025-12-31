@@ -50,12 +50,39 @@ namespace FilesManage_PoweredByAI_.Views
                 var folder = await picker.PickSingleFolderAsync();
                 if (folder != null)
                 {
+                    PickedFolderTextBlock.Text = $"已选取文件夹: {folder.Path}";
                     // Update the myFilesTreeData with the selected folder
-                    await FileDatas.myFilesTreeData.BuildTreeAsync(folder.Path);
+                    await FileDatas.LoadFromPathAsync(folder.Path);
                 }
                 // re-enable the button
                 button.IsEnabled = true;
             }
+        }
+        private async void DeletePickedFolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                // disable the button to avoid double-clicking
+                button.IsEnabled = false;
+                var picker = new FolderPicker(button.XamlRoot.ContentIslandEnvironment.AppWindowId);
+                picker.CommitButtonText = "选取文件夹";
+                picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+                picker.ViewMode = PickerViewMode.List;
+                // Show the picker dialog window
+                var folder = await picker.PickSingleFolderAsync();
+                if (folder != null)
+                {
+                    PickedFolderTextBlock.Text = $"已删除文件夹: {folder.Path}";
+                    // Update the myFilesTreeData by removing the selected folder
+                    await FileDatas.Clear(folder.Path);
+                }
+                // re-enable the button
+                button.IsEnabled = true;
+            }
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
         }
     }
 }

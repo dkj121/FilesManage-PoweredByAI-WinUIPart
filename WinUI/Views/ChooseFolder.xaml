@@ -10,8 +10,10 @@
 
     <Grid>
         <StackPanel Spacing="8">
+            <TextBlock Text="Only one Folder can be picked" />
             <Button x:Name="PickFolderButton" Content="Pick a folder" Click="PickFolderButton_Click" />
-            <TextBlock x:Name="PickedFolderTextBlock" Text="No folder picked" />
+            <Button x:Name="DeletePickedFolderButton" Content="Delete a folder" Click="DeletePickedFolderButton_Click" />
+            <TextBlock x:Name="PickedFolderTextBlock" />
         </StackPanel>
     </Grid>
 </Page>

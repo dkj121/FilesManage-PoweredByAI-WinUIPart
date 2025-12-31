@@ -16,7 +16,7 @@
             <TreeViewItem AutomationProperties.Name="{x:Bind _name}"
                 ItemsSource="{x:Bind _children}" IsExpanded="True">
                 <StackPanel Orientation="Horizontal">
-                    <Image Width="20" Source="../Assets/SampleMedia/folder.png"/>
+                    <Image Width="20" Source="../Assets/folder.png"/>
                     <TextBlock Margin="0,0,10,0"/>
                     <TextBlock Text="{x:Bind _name}" />
                 </StackPanel>
@@ -40,8 +40,12 @@
             FileTemplate="{StaticResource FileTemplate}" />
     </Page.Resources>
 
-    <!-- TreeView bound to DataSource, using the ItemTemplateSelector -->
-    <TreeView ItemsSource="{x:Bind }"
-              ItemTemplateSelector="{StaticResource FilesTemplateSelector}" />
+    <Grid>
+        <!-- TreeView bound to DataSource, using the ItemTemplateSelector -->
+        <TreeView ItemsSource="{x:Bind service:FileDatas.TreeItems, Mode=OneWay}"
+          ItemTemplateSelector="{StaticResource FilesTemplateSelector}" />
+        <AppBarButton Icon="Add" Label="New manage"
+              Click="NewManageButton_Click"/>
+    </Grid>
 
 </Page>

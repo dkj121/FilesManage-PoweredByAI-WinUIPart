@@ -28,5 +28,10 @@ namespace FilesManage_PoweredByAI_.Views
         {
             InitializeComponent();
         }
+        private void NewManageButton_Click(object sender, RoutedEventArgs e)
+        {
+            // ¡ý Add this. ¡ý
+            Frame.Navigate(typeof(ChooseFolder));
+        }
     }
 }
