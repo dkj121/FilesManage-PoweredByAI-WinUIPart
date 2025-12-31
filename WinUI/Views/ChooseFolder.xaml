@@ -10,8 +10,8 @@
 
     <Grid>
         <StackPanel Spacing="8">
-            <Button x:Name="PickMultipleFilesButton" Content="Pick multiple files" Click="PickMultipleFilesButton_Click"/>
-            <TextBlock x:Name="PickedMultipleFilesTextBlock" Text="No files picked"/>
+            <Button x:Name="PickFolderButton" Content="Pick a folder" Click="PickFolderButton_Click" />
+            <TextBlock x:Name="PickedFolderTextBlock" Text="No folder picked" />
         </StackPanel>
     </Grid>
 </Page>

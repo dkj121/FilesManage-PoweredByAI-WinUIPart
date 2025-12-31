@@ -1,3 +1,4 @@
+using FilesManage_PoweredByAI_.Service;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,38 +30,30 @@ namespace FilesManage_PoweredByAI_.Views
         {
             InitializeComponent();
         }
-        private async void PickMultipleFilesButton_Click(object sender, RoutedEventArgs e)
+        private async void PickFolderButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
             {
-                //disable the button to avoid double-clicking
+                // disable the button to avoid double-clicking
                 button.IsEnabled = false;
 
-                var picker = new FileOpenPicker(button.XamlRoot.ContentIslandEnvironment.AppWindowId);
+                // Clear previous returned folder name
+                PickedFolderTextBlock.Text = "";
 
-                picker.CommitButtonText = "Pick Files";
+                var picker = new FolderPicker(button.XamlRoot.ContentIslandEnvironment.AppWindowId);
 
-                picker.SuggestedStartLocation = PickerLocationId.Desktop;
-
+                picker.CommitButtonText = "选取文件夹";
+                picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
                 picker.ViewMode = PickerViewMode.List;
 
                 // Show the picker dialog window
-                var files = await picker.PickMultipleFilesAsync();
-
-                if (files.Count > 0)
+                var folder = await picker.PickSingleFolderAsync();
+                if (folder != null)
                 {
-                    PickedMultipleFilesTextBlock.Text = "";
-                    foreach (var file in files)
-                    {
-                        PickedMultipleFilesTextBlock.Text += "- Picked: " + file.Path + Environment.NewLine;
-                    }
+                    // Update the myFilesTreeData with the selected folder
+                    await FileDatas.myFilesTreeData.BuildTreeAsync(folder.Path);
                 }
-                else
-                {
-                    PickedMultipleFilesTextBlock.Text = "No files selected.";
-                }
-
-                //re-enable the button
+                // re-enable the button
                 button.IsEnabled = true;
             }
         }

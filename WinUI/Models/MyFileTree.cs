@@ -13,18 +13,19 @@ namespace FilesManage_PoweredByAI_.Models
     {
         public MyFilesTree()
         {
-
+            
         }
-        public async Task<MyFilesTreeNode> BuildTreeAsync(StorageFolder rootFolder)
+        public async Task<MyFilesTreeNode> BuildTreeAsync(string path)
         {
-            MyFilesTreeNode rootNode = new MyFilesTreeNode
+            StorageFolder _rootFolder = StorageFolder.GetFolderFromPathAsync(path).AsTask().Result;
+            MyFilesTreeNode rootNode = new MyFilesTreeNode()
             {
-                _name = rootFolder.Name,
-                _path = rootFolder.Path,
-                _folder = rootFolder,
+                _name = _rootFolder.Name,
+                _path = _rootFolder.Path,
+                _folder = _rootFolder,
                 _isFolder = true
             };
-            await BuildTreeRecursiveAsync(rootNode, rootFolder);
+            await BuildTreeRecursiveAsync(rootNode, _rootFolder);
             return rootNode;
         }
         public async Task BuildTreeRecursiveAsync(MyFilesTreeNode currentNode, StorageFolder currentFolder)

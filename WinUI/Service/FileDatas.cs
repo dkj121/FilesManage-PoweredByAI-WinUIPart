@@ -9,6 +9,6 @@ namespace FilesManage_PoweredByAI_.Service
 {
     internal static class FileDatas
     {
-        public static MyFilesTree? myFilesTreeData = new MyFilesTree();
+        public static MyFilesTree myFilesTreeData = new MyFilesTree();
     }
 }
