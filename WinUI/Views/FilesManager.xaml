@@ -45,7 +45,7 @@
         <TreeView ItemsSource="{x:Bind service:FileDatas.TreeItems, Mode=OneWay}"
           ItemTemplateSelector="{StaticResource FilesTemplateSelector}" />
         <AppBarButton Icon="Add" Label="New manage"
-              Click="NewManageButton_Click"/>
+                          Click="NewManageButton_Click"/>
     </Grid>
 
 </Page>
