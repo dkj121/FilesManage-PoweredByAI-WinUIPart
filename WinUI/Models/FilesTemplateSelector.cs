@@ -12,6 +12,7 @@ namespace FilesManage_PoweredByAI_.Models
     {
         public DataTemplate? FileTemplate { get; set; }
         public DataTemplate? FolderTemplate { get; set; }
+
         protected override DataTemplate SelectTemplateCore(object item)
         {
             if (item is MyFilesTreeNode node)

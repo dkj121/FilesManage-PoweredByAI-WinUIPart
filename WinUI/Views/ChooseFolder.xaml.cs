@@ -43,13 +43,14 @@ namespace FilesManage_PoweredByAI_.Views
                 var picker = new FolderPicker(button.XamlRoot.ContentIslandEnvironment.AppWindowId);
 
                 picker.CommitButtonText = "选取文件夹";
-                picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+                picker.SuggestedStartLocation = PickerLocationId.Desktop;
                 picker.ViewMode = PickerViewMode.List;
 
                 // Show the picker dialog window
                 var folder = await picker.PickSingleFolderAsync();
                 if (folder != null)
                 {
+                    FileDatas._choosedPath = folder.Path;
                     PickedFolderTextBlock.Text = $"已选取文件夹: {folder.Path}";
                     // Update the myFilesTreeData with the selected folder
                     await FileDatas.LoadFromPathAsync(folder.Path);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="FilesManage_PoweredByAI_.Views.FilesManager"
+    x:Name="FilesManagerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FilesManage_PoweredByAI_.Views"
@@ -40,12 +41,86 @@
             FileTemplate="{StaticResource FileTemplate}" />
     </Page.Resources>
 
-    <Grid>
+    <Grid Background="Azure">
         <!-- TreeView bound to DataSource, using the ItemTemplateSelector -->
-        <TreeView ItemsSource="{x:Bind service:FileDatas.TreeItems, Mode=OneWay}"
-          ItemTemplateSelector="{StaticResource FilesTemplateSelector}" />
-        <AppBarButton Icon="Add" Label="New manage"
+        <TreeView x:Name="FilesTreeView"
+                  Grid.Column="2"
+                  Margin="70,10,10,10"
+                  MinWidth="300"
+                  MaxWidth="500"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  ItemsSource="{x:Bind service:FileDatas.TreeItems, Mode=OneWay}"
+                  ItemTemplateSelector="{StaticResource FilesTemplateSelector}" 
+                  ItemInvoked="FilesTreeView_ItemInvoked"
+                  DoubleTapped="FilesTreeView_DoubleTapped"
+                  IsDoubleTapEnabled="True">
+            <TreeView.ContextFlyout>
+                <CommandBarFlyout x:Name="NodeActionsFlyout">
+                    <AppBarButton Icon="OpenFile" Label="打开" Click="Open_Click"/>
+                    <AppBarButton Icon="Edit" Label="重命名" Click="Rename_Click"/>
+                    <AppBarButton Icon="Delete" Label="删除" Click="Delete_Click"/>
+                    <AppBarButton Icon="Copy" Label="复制" Click="Copy_Click"/>
+                    <AppBarButton Icon="MoveToFolder" Label="移动" Click="Move_Click"/>
+                    <AppBarButton Icon="Add" Label="新建子项" Click="AddChild_Click"/>
+                </CommandBarFlyout>
+            </TreeView.ContextFlyout>
+        </TreeView>
+        <!-- Button View -->
+        <Grid Grid.Column="0">
+            <AppBarButton Height="80"
+                          Width="70"
+                          Icon="Add" 
+                          Label="New manage"
                           Click="NewManageButton_Click"/>
-    </Grid>
+            <AppBarButton Margin="0,80,0,0"
+                          Height="80"
+                          Width="70"
+                          Icon="Add" 
+                          Label="Auto manage"/>
+            <AppBarButton Margin="0,160,0,0"
+                          Height="80"
+                          Width="70"
+                          Icon="Refresh" 
+                          Label="Refresh"
+                          Click="Refrech_Click"/>
+        </Grid>
+        <!-- Proporty View -->
+        <Border Grid.Column="1"
+                Background="AliceBlue"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                MinWidth="200"
+                MaxWidth="500"
+                Margin="0,10,0,10"
+                Padding="12"
+                CornerRadius="8"
+                BorderThickness="1"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+            <StackPanel x:Name="PropertyPanel"
+                        DataContext="{Binding SelectedNode, ElementName=FilesManagerPage}">
+                <TextBlock Text="Properties"
+                           FontSize="16"
+                           FontWeight="SemiBold"
+                           Margin="0,0,0,12" />
 
+                <TextBlock Text="Name" Opacity="0.7" />
+                <TextBlock Text="{Binding _name}" Margin="0,0,0,10" />
+
+                <TextBlock Text="Path" Opacity="0.7" />
+                <TextBlock Text="{Binding _path}"
+                           TextWrapping="WrapWholeWords"
+                           Margin="0,0,0,10" />
+
+                <TextBlock Text="Type" Opacity="0.7" />
+                <TextBlock Text="{Binding _type}" Margin="0,0,0,10" />
+
+                <TextBlock Text="Size" Opacity="0.7" />
+                <TextBlock Text="{Binding _size}" Margin="0,0,0,10" />
+
+                <TextBlock Text="IsFolder" Opacity="0.7" />
+                <TextBlock Text="{Binding _isFolder}" />
+            </StackPanel>
+        </Border>
+    </Grid>
 </Page>

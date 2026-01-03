@@ -22,6 +22,7 @@ namespace FilesManage_PoweredByAI_.Models
             {
                 _name = _rootFolder.Name,
                 _path = _rootFolder.Path,
+                _type = "Folder",
                 _folder = _rootFolder,
                 _isFolder = true
             };
@@ -39,11 +40,12 @@ namespace FilesManage_PoweredByAI_.Models
                     {
                         _name = folder.Name,
                         _path = folder.Path,
+                        _type = "Folder",
                         _folder = folder,
                         _isFolder = true
                     };
                     folderNode.addParent(currentNode);
-                    currentNode.addChild(folderNode);
+                    currentNode._children.Add(folderNode);
                     await BuildTreeRecursiveAsync(folderNode, folder);
                 }
                 else if (item is StorageFile file)
@@ -52,11 +54,12 @@ namespace FilesManage_PoweredByAI_.Models
                     {
                         _name = file.Name,
                         _path = file.Path,
+                        _type = file.FileType,
                         _file = file,
                         _isFolder = false
                     };
                     fileNode.addParent(currentNode);
-                    currentNode.addChild(fileNode);
+                    currentNode._children.Add(fileNode);
                 }
             }
         }

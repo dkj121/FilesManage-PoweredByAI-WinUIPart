@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Window
-    x:Class="FilesManage_PoweredByAI_.MainWindow"
+    x:Class="FilesManage_PoweredByAI_.Windows.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FilesManage_PoweredByAI_"
+    xmlns:local="using:FilesManage_PoweredByAI_.Windows"
     xmlns:views="using:FilesManage_PoweredByAI_.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -22,6 +22,7 @@
         <TitleBar
             x:Name="FilesManageTitleBar"
             Title="FilesManage(PoweredByAI)"
+            Background="Azure"
             Subtitle=""
             IsBackButtonVisible="True"
             IsBackButtonEnabled="{x:Bind rootFrame.CanGoBack, Mode=OneWay}"
