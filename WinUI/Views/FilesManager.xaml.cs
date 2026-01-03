@@ -174,7 +174,7 @@ namespace FilesManage_PoweredByAI_.Views
             {
                 string msg = ex.HResult switch
                 {
-                    unchecked((int)0x800700B7) => "目标文件已存在（同名冲突）。",
+                    unchecked((int)0x800700B7) => "目标文件已存在（同名冲突），请单击刷新键。",
                     unchecked((int)0x80070020) => "文件正在被占用（可能被资源管理器/预览窗格/杀毒或本程序占用）。",
                     unchecked((int)0x80070005) => "无权限/访问被拒绝。",
                     _ => $"移动失败：0x{ex.HResult:X8} {ex.Message}"
@@ -207,7 +207,7 @@ namespace FilesManage_PoweredByAI_.Views
                 {
                     string msg = ex.HResult switch
                     {
-                        unchecked((int)0x800700B7) => "目标文件删除。",
+                        unchecked((int)0x800700B7) => "目标文件删除，请单击刷新键。",
                         unchecked((int)0x80070020) => "文件正在被占用（可能被资源管理器/预览窗格/杀毒或本程序占用）。",
                         unchecked((int)0x80070005) => "无权限/访问被拒绝。",
                         _ => $"删除失败：0x{ex.HResult:X8} {ex.Message}"
@@ -242,7 +242,7 @@ namespace FilesManage_PoweredByAI_.Views
             {
                 string msg = ex.HResult switch
                 {
-                    unchecked((int)0x800700B7) => "目标文件已存在（同名冲突）。",
+                    unchecked((int)0x800700B7) => "目标文件已存在（同名冲突），请单击刷新键。",
                     unchecked((int)0x80070020) => "文件正在被占用（可能被资源管理器/预览窗格/杀毒或本程序占用）。",
                     unchecked((int)0x80070005) => "无权限/访问被拒绝。",
                     _ => $"移动失败：0x{ex.HResult:X8} {ex.Message}"
@@ -276,7 +276,7 @@ namespace FilesManage_PoweredByAI_.Views
             {
                 string msg = ex.HResult switch
                 {
-                    unchecked((int)0x800700B7) => "目标文件已存在（同名冲突）。",
+                    unchecked((int)0x800700B7) => "目标文件已存在（同名冲突），请单击刷新键。",
                     unchecked((int)0x80070020) => "文件正在被占用（可能被资源管理器/预览窗格/杀毒或本程序占用）。",
                     unchecked((int)0x80070005) => "无权限/访问被拒绝。",
                     _ => $"移动失败：0x{ex.HResult:X8} {ex.Message}"
@@ -309,7 +309,7 @@ namespace FilesManage_PoweredByAI_.Views
             {
                 string msg = ex.HResult switch
                 {
-                    unchecked((int)0x800700B7) => "目标文件已存在（同名冲突）。",
+                    unchecked((int)0x800700B7) => "目标文件已存在（同名冲突），请单击刷新键。",
                     unchecked((int)0x80070020) => "文件正在被占用（可能被资源管理器/预览窗格/杀毒或本程序占用）。",
                     unchecked((int)0x80070005) => "无权限/访问被拒绝。",
                     _ => $"移动失败：0x{ex.HResult:X8} {ex.Message}"
